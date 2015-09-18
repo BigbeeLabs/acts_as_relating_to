@@ -47,31 +47,25 @@ module ActsAsRelatingTo
 	module InstanceMethods
 
 		#===========================================================================
-  	def create_relationship(args)
-			Relationship.create(owner: args[:owner], in_relation_to: args[:in_relation_to])
+  	def create_relationship(owner,in_relation_to)
+			Relationship.create!(owner: owner, in_relation_to: in_relation_to)
   	end
   	
 		#===========================================================================
 		def tell_to_unrelate
-			puts "in #{self.class.name}.#{__method__}"
-  		@relating_things = referencing_relationships.map{|rel| rel.owner_type}.uniq
-  		@relating_things.each do |thing|
-  			thing.constantize.unrelate_to(in_relation_to_type: self.class.name, in_relation_to_id: self.id)
-  		end
+			referencing_relationships.each do |referencing_relationship|
+				referencing_relationship.owner.unrelate_to self
+			end
 		end
 
 		#===========================================================================
+		# TODO Able to accept either string or array for options[:as]
+		#===========================================================================
   	def relate_to(related_thing, options={})
-  		puts "in #{self.class.name}.#{__method__}"
-  		puts "options.inspect: #{options.inspect}"
 			unless @relationship = relationship_to(related_thing).first
-				puts "no relationship"
-				@relationship = Relationship.create!(owner: self, in_relation_to: related_thing)
-			else
-				puts "relationship is there"
+				@relationship = create_relationship self, related_thing
 			end
 			unless options[:as].nil?
-				puts "options[:as].nil?: #{options[:as].nil?}"
 				@relationship.role_list.add options[:as]
 				@relationship.save
 			end
@@ -79,7 +73,7 @@ module ActsAsRelatingTo
 
 		#===========================================================================
   	def relates_to?(thing)
-  		(relationship_to(thing).count > 0)? true : false
+  		relationship_to(thing).count > 0
   	end 
 
 		#===========================================================================
@@ -94,16 +88,13 @@ module ActsAsRelatingTo
   	end
   	
   	def unrelate_to(thing)
-  		puts "in #{self.class.name}.#{__method__}"
-  		puts "this is the intance method"
-  		rel = relationship_to(thing).first
-  		puts "rel.inspect: #{rel.inspect}"
+  		relationship_to(thing).first.destroy!
   	end
 
 	end #Instance Methods
 	
 	module ClassMethods
-		
+=begin		
 		def unrelate_to(options={})
 			puts "in #{self}.#{__method__}"
   		thing = options[:in_relation_to_type].constantize.find(options[:in_relation_to_id])
@@ -113,6 +104,7 @@ module ActsAsRelatingTo
   			object.unrelate_to(thing)
   		end
 		end
+=end
 	end #ClassMethods
 	
 end
