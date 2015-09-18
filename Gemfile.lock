@@ -3,7 +3,7 @@ PATH
   specs:
     acts_as_relating_to (0.0.1)
       acts_as_taggable_on
-      rails (~> 4.2.1)
+      rails (~> 4.2)
 
 GEM
   remote: https://rubygems.org/
@@ -130,8 +130,8 @@ PLATFORMS
 DEPENDENCIES
   acts_as_relating_to!
   factory_girl_rails
-  pg
-  rspec-rails
+  pg (~> 0.18)
+  rspec-rails (~> 3.0)
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
