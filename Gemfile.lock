@@ -43,8 +43,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    acts_as_taggable_on (3.0.0.rc2)
-      rails (>= 3, < 5)
     arel (6.0.3)
     builder (3.2.2)
     diff-lcs (1.2.5)
