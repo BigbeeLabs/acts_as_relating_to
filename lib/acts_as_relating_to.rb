@@ -24,6 +24,27 @@ module ActsAsRelatingTo
 	
 			
 				classes_array.each do |class_sym|
+					define_method(class_sym.to_s + "_that_relate_to_me") do |options={}|
+						if options[:as]
+							ids = referencing_relationships.tagged_with(options[:as]).where("owner_type=?", class_sym.to_s.singularize.camelize).map{|t| t.owner_id}
+							class_sym.to_s.singularize.camelize.constantize.find(ids)
+						else
+							ids = referencing_relationships.where("owner_type=?", class_sym.to_s.singularize.camelize).map{|t| t.owner_id}
+							class_sym.to_s.singularize.camelize.constantize.find(ids)
+						end
+					end
+
+					define_method(class_sym.to_s+"_i_relate_to") do |options={}|
+						if options[:as]
+							ids = owned_relationships.tagged_with(options[:as]).where("in_relation_to_type=?", class_sym.to_s.singularize.camelize).map{|t| t.in_relation_to_id}
+							class_sym.to_s.singularize.camelize.constantize.find(ids)
+						else
+							ids = owned_relationships.where("in_relation_to_type=?", class_sym.to_s.singularize.camelize).map{|t| t.in_relation_to_id}
+							class_sym.to_s.singularize.camelize.constantize.find(ids)
+						end
+					end
+
+=begin
 					has_many (class_sym.to_s + "_i_relate_to").to_sym,
 								through: :owned_relationships, 
 								source: :in_relation_to, 
@@ -33,7 +54,8 @@ module ActsAsRelatingTo
 								through: :referencing_relationships, 
 								source: :owner, 
 								source_type: class_sym.to_s.singularize.camelize
-	
+=end	
+
 					define_method("owned_relationships_to_" + class_sym.to_s) do
 						owned_relationships.where(in_relation_to_type: "#{class_sym.to_s.singularize.camelize}")
 					end		

@@ -17,8 +17,29 @@ module ActsAsRelatingTo
   			things = owner.send "#{params[:thing_type]}_#{__method__}"
   		end
   		puts "things: #{things.inspect}"
-  		ret = things.map{|t| [id: t.id, name: t.name, system_name: t.system_name]}
+      case :thing_type
+      when "organizations"
+    		ret = things.map{|t| [id: t.id, name: t.name, system_name: t.system_name]}
+      end
   		render json: things, status: :ok
   	end
+
+    def that_relate_to_me
+      puts "in #{self.class}.#{__method__}, params: #{params}"
+      owner = controller_constant.find(params["#{controller_name.singularize}_id"])
+      if params[:as]
+        puts "in #{self.class}.#{__method__}, params[:as]: #{params[:as]}"
+        things = owner.send "#{params[:thing_type]}_#{__method__}", as: params[:as]
+      else
+        things = owner.send "#{params[:thing_type]}_#{__method__}"
+      end
+      puts "things: #{things.inspect}"
+      case :thing_type
+      when "organizations"
+        ret = things.map{|t| [id: t.id, name: t.name, system_name: t.system_name]}
+      end
+      render json: things, status: :ok
+
+    end
   end
 end
