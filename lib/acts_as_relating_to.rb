@@ -61,7 +61,7 @@ module ActsAsRelatingTo
 					end		
 					
 				end #classes_array.each do |class_sym|			
-			end
+		end
 		include InstanceMethods
 		extend ClassMethods
 	end
