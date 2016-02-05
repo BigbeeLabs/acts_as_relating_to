@@ -7,7 +7,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
-require "acts_as_taggable_on"
+require "acts-as-taggable-on"
 
 Bundler.require(*Rails.groups)
 require "acts_as_relating_to"

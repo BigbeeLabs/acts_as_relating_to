@@ -25,117 +25,12 @@ ActiveRecord::Schema.define(version: 20150918171936) do
     t.datetime "updated_at",          null: false
   end
 
-  create_table "app_collaborators_access_tokens", force: :cascade do |t|
-    t.integer  "application_id"
-    t.string   "application_type"
-    t.integer  "resource_owner_id"
-    t.string   "token"
-    t.string   "refresh_token"
-    t.integer  "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  create_table "app_collaborators_app_clients", force: :cascade do |t|
-    t.string   "name"
-    t.string   "uuid"
-    t.string   "secret"
-    t.text     "redirect_uri"
-    t.string   "scopes"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "app_collaborators_app_providers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "uri"
-    t.string   "base_path"
-    t.string   "uuid"
-    t.string   "secret"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "app_client_type"
-    t.integer  "app_client_id"
-  end
-
   create_table "bars", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "foos", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "graph_resource_resource_bases", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "graph_id"
-  end
-
-  create_table "instrument_builder_haz_as", force: :cascade do |t|
-    t.string   "hazer_type"
-    t.integer  "hazer_id"
-    t.string   "hazd_type"
-    t.integer  "hazd_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "instrument_builder_instrument_assets", force: :cascade do |t|
-    t.string   "asset_type"
-    t.string   "container"
-    t.string   "size"
-    t.string   "asset"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "instrument_builder_instrument_element_class_sources", force: :cascade do |t|
-    t.string   "class_name"
-    t.string   "filter_type"
-    t.string   "filter_on_field"
-    t.text     "filter_on_values", default: [],              array: true
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  create_table "instrument_builder_instrument_element_templates", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "version"
-    t.string   "mappings"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "instrument_builder_instrument_elements", force: :cascade do |t|
-    t.string   "name"
-    t.string   "title"
-    t.string   "template_name"
-    t.string   "source_type"
-    t.integer  "source_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "template_version"
-    t.string   "template_mappings"
-    t.string   "question_text"
-    t.string   "spec"
-    t.integer  "file_format_version"
-  end
-
-  create_table "instrument_builder_instrument_panels", force: :cascade do |t|
-    t.string   "name"
-    t.string   "template_name"
-    t.string   "title"
-    t.text     "instrument_elements", default: [],              array: true
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-  end
-
-  create_table "instrument_builder_manual_list_sources", force: :cascade do |t|
-    t.string   "list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

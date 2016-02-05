@@ -8,7 +8,7 @@ module ActsAsRelatingTo
 					app.config.paths["db/migrate"] << expanded_path
 				end
 			end
-		end	
+		end
 
   end
     

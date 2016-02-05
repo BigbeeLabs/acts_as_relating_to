@@ -1,7 +1,9 @@
 require "acts_as_relating_to/engine"
+#require 'acts_as_relating_to/relationship'
 
 module ActsAsRelatingTo
 	def acts_as_relating_to(*classes_array)
+    #puts "in #{my_klass}.#{__method__}, classes_array: #{classes_array}"
 		class_eval do
 
 			# ========================================================================
@@ -21,8 +23,7 @@ module ActsAsRelatingTo
 					as: :in_relation_to,
 					class_name: "ActsAsRelatingTo::Relationship",
 					dependent: :destroy
-	
-			
+		
 				classes_array.each do |class_sym|
 					define_method(class_sym.to_s + "_that_relate_to_me") do |options={}|
 						if options[:as]
@@ -44,18 +45,6 @@ module ActsAsRelatingTo
 						end
 					end
 
-=begin
-					has_many (class_sym.to_s + "_i_relate_to").to_sym,
-								through: :owned_relationships, 
-								source: :in_relation_to, 
-								source_type: class_sym.to_s.singularize.camelize 
-					
-					has_many (class_sym.to_s + "_that_relate_to_me").to_sym,					
-								through: :referencing_relationships, 
-								source: :owner, 
-								source_type: class_sym.to_s.singularize.camelize
-=end	
-
 					define_method("owned_relationships_to_" + class_sym.to_s) do
 						owned_relationships.where(in_relation_to_type: "#{class_sym.to_s.singularize.camelize}")
 					end		
@@ -70,7 +59,12 @@ module ActsAsRelatingTo
 
 		#===========================================================================
   	def create_relationship(owner,in_relation_to)
-			Relationship.create!(owner: owner, in_relation_to: in_relation_to)
+			Relationship.create!(
+        owner_type:           owner.class,
+        owner_id:             owner.id,
+        in_relation_to_type:  in_relation_to.class,
+        in_relation_to_id:    in_relation_to.id
+      )
   	end
   	
 		#===========================================================================
