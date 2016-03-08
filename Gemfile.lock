@@ -131,7 +131,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_relating_to!
-  factory_girl_rails
+  factory_girl_rails (~> 4.5)
   pg (~> 0.18)
   rspec-rails (~> 3.0)
 
