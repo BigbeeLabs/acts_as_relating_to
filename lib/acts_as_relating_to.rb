@@ -1,60 +1,34 @@
 require "acts_as_relating_to/engine"
 #require 'acts_as_relating_to/relationship'
+require_dependency 'acts_as_relating_to/class_methods'
+require_dependency 'acts_as_relating_to/define_methods'
 
 module ActsAsRelatingTo
 	def acts_as_relating_to(*classes_array)
-    #puts "in #{my_klass}.#{__method__}, classes_array: #{classes_array}"
-		class_eval do
 
-			# ========================================================================
-			#  Callbacks
-			# ========================================================================
-				before_destroy :tell_to_unrelate
+    class_eval do
 
-			# ========================================================================
-			#  Associations
-			# ========================================================================
-				has_many :owned_relationships,
-					as: :owner,
-					class_name: "ActsAsRelatingTo::Relationship",
-					dependent: :destroy
-																			 
-				has_many :referencing_relationships,
-					as: :in_relation_to,
-					class_name: "ActsAsRelatingTo::Relationship",
-					dependent: :destroy
-		
-				classes_array.each do |class_sym|
-					define_method(class_sym.to_s + "_that_relate_to_me") do |options={}|
-						if options[:as]
-							ids = referencing_relationships.tagged_with(options[:as]).where("owner_type=?", class_sym.to_s.singularize.camelize).map{|t| t.owner_id}
-							class_sym.to_s.singularize.camelize.constantize.find(ids)
-						else
-							ids = referencing_relationships.where("owner_type=?", class_sym.to_s.singularize.camelize).map{|t| t.owner_id}
-							class_sym.to_s.singularize.camelize.constantize.find(ids)
-						end
-					end
+      include InstanceMethods
+      extend  ClassMethods
+      extend  DefineMethods
 
-					define_method(class_sym.to_s+"_i_relate_to") do |options={}|
-						if options[:as]
-							ids = owned_relationships.tagged_with(options[:as]).where("in_relation_to_type=?", class_sym.to_s.singularize.camelize).map{|t| t.in_relation_to_id}
-							class_sym.to_s.singularize.camelize.constantize.find(ids)
-						else
-							ids = owned_relationships.where("in_relation_to_type=?", class_sym.to_s.singularize.camelize).map{|t| t.in_relation_to_id}
-							class_sym.to_s.singularize.camelize.constantize.find(ids)
-						end
-					end
+      classes_array.each do |class_sym|
+       
+      end #classes_array.each do |class_sym|      
 
-					define_method("owned_relationships_to_" + class_sym.to_s) do
-						owned_relationships.where(in_relation_to_type: "#{class_sym.to_s.singularize.camelize}")
-					end		
-					
-				end #classes_array.each do |class_sym|			
-		end
-		include InstanceMethods
-		extend ClassMethods
-	end
-	
+    end
+
+    if my_klass < ActiveRecord::Base
+      before_destroy :tell_to_unrelate
+      ar_has_many
+    else
+      poro_has_many
+    end
+
+
+  end
+  
+  
 	module InstanceMethods
 
 		#===========================================================================
@@ -109,19 +83,6 @@ module ActsAsRelatingTo
 
 	end #Instance Methods
 	
-	module ClassMethods
-=begin		
-		def unrelate_to(options={})
-			puts "in #{self}.#{__method__}"
-  		thing = options[:in_relation_to_type].constantize.find(options[:in_relation_to_id])
-  		rels = Relationship.where(owner_type: self,	in_relation_to: thing)
-  		rels.each do |rel|
-  			object = self.find(rel[:owner_id])
-  			object.unrelate_to(thing)
-  		end
-		end
-=end
-	end #ClassMethods
 	
 end
 
