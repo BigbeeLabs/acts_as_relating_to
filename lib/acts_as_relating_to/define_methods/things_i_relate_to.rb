@@ -2,8 +2,6 @@ module ActsAsRelatingTo
   module DefineMethods
     module ThingsIRelateTo
       def define_method_things_i_relate_to(class_sym, options={})
-        puts "in #{self}.#{__method__}, class_sym: #{class_sym}"
-        puts "in #{self}.#{__method__}, options: #{options}"
         thing_klass_name = class_sym.to_s.singularize.camelize
 
         define_method(class_sym.to_s+"_i_relate_to") do |options={}|
