@@ -1,6 +1,6 @@
 module ActsAsRelatingTo
   module DefineMethods
-    module things_that_relate_to_me
+    module ThingsThatRelateToMe
 
       def define_method_things_that_relate_to_me(class_sym, options={})
 
