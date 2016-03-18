@@ -4,6 +4,8 @@ require_dependency 'acts_as_relating_to/define_methods/owned_relationships_to_th
 require_dependency 'acts_as_relating_to/define_methods/referencing_relationships'
 require_dependency 'acts_as_relating_to/define_methods/things_i_relate_to'
 require_dependency 'acts_as_relating_to/define_methods/things'
+require_dependency 'acts_as_relating_to/define_methods/things_local'
+require_dependency 'acts_as_relating_to/define_methods/things_remote'
 require_dependency 'acts_as_relating_to/define_methods/things_that_relate_to_me'
 
 module ActsAsRelatingTo
@@ -13,6 +15,8 @@ module ActsAsRelatingTo
     include OwnedRelationshipsToThings
     include ReferencingRelationships
     include Things
+    include ThingsLocal
+    include ThingsRemote
     include ThingsIRelateTo
     include ThingsThatRelateToMe
   end

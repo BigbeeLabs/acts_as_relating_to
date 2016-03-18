@@ -4,6 +4,7 @@ require_dependency 'acts_as_relating_to/class_methods'
 require_dependency 'acts_as_relating_to/define_methods'
 require_dependency 'acts_as_relating_to/shared_methods'
 require_dependency 'acts_as_relating_to/instance_methods'
+require_dependency 'bigbee_labs/associations'
 
 module ActsAsRelatingTo
   def acts_as_relating_to(*classes_array)
@@ -14,13 +15,14 @@ module ActsAsRelatingTo
       extend  SharedMethods
       extend  ClassMethods
       extend  DefineMethods
+      extend  BigbeeLabs::Associations::ClassMethods
     end
 
     if self < ActiveRecord::Base
       before_destroy :tell_to_unrelate
-      ar_has_many
+      #ar_has_many
     else
-      poro_has_many
+      #poro_has_many
     end
 
     if is_array_of_keys?(classes_array)
