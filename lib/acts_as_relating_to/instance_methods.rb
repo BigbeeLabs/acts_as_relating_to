@@ -1,5 +1,8 @@
+require_dependency 'acts_as_relating_to/instance_methods/owned_relationship_to_thing'
+
 module ActsAsRelatingTo
   module InstanceMethods
+    include OwnedRelationshipToThing
 
     #===========================================================================
     def create_relationship(owner,in_relation_to)

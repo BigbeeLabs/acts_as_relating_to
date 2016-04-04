@@ -18,6 +18,8 @@ module ActsAsRelatingTo
           thing_klass.where(id: thing_ids).all
         end
 
+        private "#{class_sym}_i_relate_to".to_sym
+
       end
     end
   end
