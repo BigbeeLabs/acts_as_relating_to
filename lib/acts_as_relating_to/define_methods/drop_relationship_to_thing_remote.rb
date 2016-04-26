@@ -20,6 +20,7 @@ module ActsAsRelatingTo
             my_klass.called_by = "drop_relationship_to_#{thing_objekt_name}"
             result = generic('delete')
             remove_instance_variable(:@thing)
+            puts "in #{my_klass}.#{__method__}, result: #{result}"
             result.with_indifferent_access
           else
             raise "in #{my_klass}.#{__method__}, expected a #{thing_klass_name}, but got a #{thing.class.name}"
