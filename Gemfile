@@ -13,6 +13,7 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 #gem 'acts_as_relating_to',    path: '~/rails_projects/bigbee/acts_as_relating_to'
+gem 'bigbee_labs-associations', path: '~/rails_projects/gems_and_engines/bigbee_labs-associations'
 
 group :test do
   #gem 'factory_girl_rails'
