@@ -32,6 +32,7 @@ module ActsAsRelatingTo
     # ==========================================================================
       acts_as_taggable
       acts_as_taggable_on :roles
+      acts_as_having :roles, class_name: 'ActsAsRelatingTo::Role'
     
   end
 end

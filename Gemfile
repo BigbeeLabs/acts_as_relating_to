@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://gem.fury.io/joseph-bigbee/'
 
 # Declare your gem's dependencies in acts_as_relating_to.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -13,7 +14,7 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 #gem 'acts_as_relating_to',    path: '~/rails_projects/bigbee/acts_as_relating_to'
-gem 'bigbee_labs-associations', path: '~/rails_projects/gems_and_engines/bigbee_labs-associations'
+gem 'bigbee_labs-associations', path: '~/rails_projects/bigbee_labs/gems/bigbee_labs-associations'
 
 group :test do
   #gem 'factory_girl_rails'

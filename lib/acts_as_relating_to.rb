@@ -1,10 +1,12 @@
 require "acts_as_relating_to/engine"
+require 'active_support/dependencies'
 #require 'acts_as_relating_to/relationship'
 require_dependency 'acts_as_relating_to/class_methods'
 require_dependency 'acts_as_relating_to/define_methods'
 require_dependency 'acts_as_relating_to/shared_methods'
 require_dependency 'acts_as_relating_to/instance_methods'
 require_dependency 'bigbee_labs/associations'
+require_dependency 'acts_as_having'
 
 module ActsAsRelatingTo
   def acts_as_relating_to(*classes_array)
@@ -16,6 +18,7 @@ module ActsAsRelatingTo
       extend  ClassMethods
       extend  DefineMethods
       extend  BigbeeLabs::Associations::ClassMethods
+      extend ActsAsHaving
     end
 
     if self < ActiveRecord::Base

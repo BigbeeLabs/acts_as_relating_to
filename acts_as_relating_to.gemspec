@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails",               "~> 4.2"
   s.add_dependency "acts-as-taggable-on", '~> 3.4'
+  s.add_dependency "acts_as_having",      '~> 0.0.22'
 
 
   s.add_development_dependency "pg",                  '~> 0.18'
