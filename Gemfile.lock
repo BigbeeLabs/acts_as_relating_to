@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    acts_as_relating_to (0.0.5)
+    acts_as_relating_to (0.0.6)
       acts-as-taggable-on (~> 3.4)
       acts_as_having (~> 0.0.22)
       annotate (~> 2.7)

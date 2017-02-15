@@ -15,7 +15,7 @@ module ActsAsRelatingTo
             thing_ids = owned_relationships.where(in_relation_to_type: thing_klass_name)
                                      .pluck(:in_relation_to_id)
           end
-          thing_klass.where(id: thing_ids).all
+          thing_klass.where(id: thing_ids)
         end
 
         private "#{class_sym}_i_relate_to".to_sym
