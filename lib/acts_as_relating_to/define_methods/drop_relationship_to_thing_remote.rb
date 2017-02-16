@@ -9,7 +9,7 @@ module ActsAsRelatingTo
         thing_objekt_name = class_sym.to_s.singularize
 
         define_method("drop_relationship_to_#{thing_objekt_name}_url") do
-          my_klass.url = self.class::APP_PROVIDER.url
+          my_klass.url = my_klass.app_provider.url
           my_klass.url = "#{url}/#{my_object_name.pluralize}/#{self.id}"
           my_klass.url = "#{url}/#{class_sym}/#{@thing.id}"
         end
