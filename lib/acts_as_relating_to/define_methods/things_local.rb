@@ -9,7 +9,8 @@ module ActsAsRelatingTo
 
         define_method(class_sym) do |args={}|
           things_klass = things_klass_name.constantize
-          rels = owned_relationships.tagged_with(options[:as]) if options[:as]
+          rels = owned_relationships
+          rels = rels.tagged_with(options[:as]) if options[:as]
           rels = rels.where(in_relation_to_type: things_klass_name)
           rels_ids = rels.pluck(:in_relation_to_id)
           things_klass.where(id: rels_ids)

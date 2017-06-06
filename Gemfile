@@ -16,6 +16,14 @@ gemspec
 #gem 'acts_as_relating_to',    path: '~/rails_projects/bigbee/acts_as_relating_to'
 #gem 'bigbee_labs-associations', path: '~/rails_projects/bigbee_labs/gems/bigbee_labs-associations'
 
+group :development do 
+  gem 'guard-rspec', require: false
+end
+
+group :development, :test do
+  gem 'factory_girl_rails', require: false
+end
+
 group :test do
   #gem 'factory_girl_rails'
 end

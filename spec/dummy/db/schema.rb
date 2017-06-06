@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122214255) do
+ActiveRecord::Schema.define(version: 20170606005136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,81 +41,12 @@ ActiveRecord::Schema.define(version: 20161122214255) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "app_collaborators_access_grants", force: :cascade do |t|
-    t.integer  "app_client_id"
-    t.string   "code"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "resource_owner_id"
-    t.integer  "access_token_id"
-  end
-
-  create_table "app_collaborators_access_tokens", force: :cascade do |t|
-    t.integer  "application_id"
-    t.string   "application_type"
-    t.integer  "resource_owner_id"
-    t.string   "token"
-    t.string   "refresh_token"
-    t.integer  "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  create_table "app_collaborators_api_service_transactions", force: :cascade do |t|
-    t.integer  "api_service_id"
-    t.integer  "app_client_id"
-    t.string   "result_status"
-    t.string   "result"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  create_table "app_collaborators_app_clients", force: :cascade do |t|
-    t.string   "name"
-    t.string   "uuid"
-    t.string   "secret"
-    t.text     "redirect_uri"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "display_name"
-    t.string   "api_key"
-  end
-
-  create_table "app_collaborators_app_providers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "uri"
-    t.string   "base_path"
-    t.string   "uuid"
-    t.string   "secret"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "app_client_type"
-    t.integer  "app_client_id"
-  end
-
-  create_table "app_collaborators_scopes", force: :cascade do |t|
-    t.string   "code"
-    t.string   "display_text"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "bars", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "foos", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "haz_as", force: :cascade do |t|
-    t.string   "hazer_type"
-    t.integer  "hazer_id"
-    t.string   "hazed_type"
-    t.integer  "hazed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -131,9 +62,11 @@ ActiveRecord::Schema.define(version: 20161122214255) do
   end
 
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
