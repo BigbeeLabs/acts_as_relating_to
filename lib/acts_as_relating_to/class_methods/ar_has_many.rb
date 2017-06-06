@@ -3,8 +3,6 @@ module ActsAsRelatingTo
     module ArHasMany
       def ar_has_many
         
-        puts "in #{self}.#{__method__}, message"
-
         has_many :owned_relationships,
           as: :owner,
           class_name: "ActsAsRelatingTo::Relationship",

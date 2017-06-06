@@ -2,7 +2,6 @@ module ActsAsRelatingTo
   module ClassMethods
     module Base
       def acts_as_relating_to_base(class_sym, options={})
-        puts "options: #{options}"
         if self < ActiveRecord::Base
           has_many :owned_relationships,
             as: :owner,
