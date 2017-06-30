@@ -16,10 +16,11 @@ module ActsAsRelatingTo
     # ==========================================================================
     #  Validations
     # ==========================================================================
-      validates :owner_id,                  presence: true
-      validates :owner_type,                presence: true
-      validates :in_relation_to_id,            presence: true
-      validates :in_relation_to_type,          presence: true
+      validates :owner_id,
+                :owner_type,
+                :in_relation_to_id,
+                :in_relation_to_type,
+                presence: true
       
     # ==========================================================================
     #  Associations
