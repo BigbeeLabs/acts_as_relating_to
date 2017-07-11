@@ -22,8 +22,12 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
+  gem 'bigbee_labs-remote_models_base',                       path: '~/rails_projects/bigbee_labs/gems/bigbee_labs-remote_models_base'
+  gem 'bigbee_labs-http_actions',                             path: '~/rails_projects/bigbee_labs/gems/http_actions'    
 end
 
 group :test do
   #gem 'factory_girl_rails'
+  gem 'webmock'
+  gem 'database_cleaner'
 end

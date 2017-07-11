@@ -27,7 +27,7 @@ module ActsAsRelatingTo
           end
         end
 
-
+        private "drop_relationship_to_#{thing_objekt_name}_url".to_sym
 
       end # define_method_drop_relationship_to_thing_remote
 

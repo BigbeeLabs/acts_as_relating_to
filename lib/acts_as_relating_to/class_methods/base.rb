@@ -28,11 +28,17 @@ module ActsAsRelatingTo
         private :referencing_relationships
 
         methods_to_define = [
-          "things_i_relate_to",
-          "add_related_thing",
-          "drop_relationship_to_thing",
-          "things",
-          :things_that_relate_to_me
+          :things_i_relate_to,
+          :add_related_thing,
+          :drop_relationship_to_thing,
+          :things,
+          :things_that_relate_to_me,
+          :invite_thing_to_relationship,
+          :received_relationship_invitations,
+          :sent_relationship_invitations,
+          :update_relationship_invitation,
+          :relate_to_thing,
+          :relationship_invitations_sent_to
         ]
         methods_to_define.each do |method_name|
           send "define_method_#{method_name}", class_sym, options

@@ -1,0 +1,50 @@
+headers:
+  file_name:            "app_collaborators.yaml"
+  file_format_version:  1
+app_collaborators:  
+  -
+    app_provider:
+      name:             "bigbee_accounts"
+      uri:			  
+        development:    "http://localhost:4000"
+        test:           "https://bigbee-accounts-staging.herokuapp.com"
+        staging:        "https://bigbee-accounts-staging.herokuapp.com"
+        production:     "https://accounts.bigbeelabs.com"
+      base_path:        "/api/v0"
+  -
+    app_provider:
+      name:             "bigbee_graph"
+      uri:        
+        development:    "http://localhost:3000"
+        test:           "https://bigbee-graph-staging.herokuapp.com"
+        staging:        "https://bigbee-graph-staging.herokuapp.com"
+        production:     "https://graph.bigbeelabs.com"
+      base_path:        "/api/v0"
+  -
+    app_provider:
+      name:             "bigbee_program"
+      uri:        
+        development:    "http://localhost:4500"
+        test:           "https://bigbee-program-staging.herokuapp.com"
+        staging:        "https://bigbee-program-staging.herokuapp.com"
+        production:     "https://programs.bigbeelabs.com"
+      base_path:        "/api/v0"
+  -
+    app_provider:
+      name:             "bigbee_developer"
+      uri:        
+        development:    "http://localhost:3700"
+        test:           "https://bigbee-developer-staging.herokuapp.com"
+        staging:        "https://bigbee-developer-staging.herokuapp.com"
+        production:     "https://developer.bigbeelabs.com"
+      base_path:        "/api/v0"
+  -
+    app_provider:
+      name:             "bigbee_resources"
+      uri:        
+        development:    "http://localhost:3600"
+        test:           "https://bigbee-developer-staging.herokuapp.com"
+        staging:        "https://bigbee-developer-staging.herokuapp.com"
+        production:     "https://resources.bigbeelabs.com"
+      base_path:        "/api/v1"
+

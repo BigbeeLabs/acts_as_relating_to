@@ -18,7 +18,7 @@ module ActsAsRelatingTo
       extend  ClassMethods
       extend  DefineMethods
       extend  BigbeeLabs::Associations::ClassMethods
-      extend ActsAsHaving
+      extend  ActsAsHaving
     end
 
     if self < ActiveRecord::Base

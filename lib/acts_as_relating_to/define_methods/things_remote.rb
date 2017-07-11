@@ -31,8 +31,10 @@ module ActsAsRelatingTo
           end
         end
 
+        private "#{class_sym}".to_sym
         private "#{class_sym}_url".to_sym
         private :make_collection
+
 
       end
     end

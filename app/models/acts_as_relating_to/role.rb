@@ -8,8 +8,8 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+require_dependency 'acts_as_relating_to'
 
-module ActsAsRelatingTo
-  class Role < ActiveRecord::Base
-  end
+class ActsAsRelatingTo::Role < ActiveRecord::Base
+
 end

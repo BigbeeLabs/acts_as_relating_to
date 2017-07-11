@@ -12,6 +12,8 @@ module ActsAsRelatingTo
           rels.pluck(:in_relation_to_id)
         end
 
+        private "#{class_sym}_ids".to_sym
+
         if options[:remote]
           things_remote class_sym, options
         else

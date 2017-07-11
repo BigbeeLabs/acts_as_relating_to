@@ -18,7 +18,8 @@ module ActsAsRelatingTo
           res
         end
 
-
+        private "add_#{thing_objekt_name}_url".to_sym
+        
       end
     end
   end

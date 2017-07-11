@@ -1,3 +1,16 @@
+class String
+  class_eval do
+    def colorize(color_code)  "\e[#{color_code}m#{self}\e[0m"   end
+    def red()                 colorize(31)                      end
+    def green()               colorize(32)                      end
+    def yellow()              colorize(33)                      end
+    def blue()                colorize(34)                      end
+    def light_blue()          colorize(36)                      end
+    def pink()                colorize(35)                      end
+  end
+end
+
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -34,6 +47,22 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

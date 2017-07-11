@@ -1,0 +1,6 @@
+---
+headers:
+  delete:         false
+role:
+  name:           'friend'
+  display_name:   'FooFriend'

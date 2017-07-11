@@ -1,0 +1,5 @@
+---
+headers:
+role:
+  name:           'friend'
+  display_name:   'Friend'
