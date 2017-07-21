@@ -33,19 +33,22 @@ module ActsAsRelatingTo
           :drop_relationship_to_thing,
           :things,
           :things_that_relate_to_me,
-          :invite_thing_to_relationship,
-          :received_relationship_invitations,
-          :sent_relationship_invitations,
-          :update_relationship_invitation,
+          #:invite_thing_to_relationship,
+          #:received_relationship_invitations,
+          #:sent_relationship_invitations,
+          #:update_relationship_invitation,
           :relate_to_thing,
           :relates_to_thing,
-          :relationship_invitations_sent_to
+          #:relationship_invitations_sent_to
         ]
         methods_to_define.each do |method_name|
           send "define_method_#{method_name}", class_sym, options
         end
         
       end
+
+      private :acts_as_relating_to_base
+
     end
   end
 end

@@ -1,4 +1,4 @@
-module ActsAsRelatingTo
+module SharingRelationshipInvitations
   module DefineMethods
     module InviteThingToRelationshipLocal
 
@@ -8,24 +8,21 @@ module ActsAsRelatingTo
         singular = class_sym.to_s.singularize
 
         define_method("invite_#{singular}_to_relationship") do |thing, args={}|
-          puts "#{self.class}.#{__method__}, thing.inspect:"<<" #{thing.inspect}".green
           if thing.is_a?(klass)
             role_list = args[:as] || ["friend"]
             role_list = role_list.split(" ") unless role_list.is_a?(Array)
             role_list.each do |role_name|
-              puts "#{self.class}.#{__method__}, role_name:"<<" #{role_name}".green
               ActiveRecord::Base.transaction do
                 if role = ::ActsAsRelatingTo::Role.find_by(name: role_name)
-                  puts "#{self.class}.#{__method__}, role.inspect:"<<" #{role.inspect}".green
-                  unless invitation = relationship_invitations_sent_to(thing).where(role_id: role.id).first
+                  unless invitation = relationship_invitations_sent_to(thing).where(role: role).first
                     invitation = sent_relationship_invitations.new(recipient: thing, role_id: role.id)
                     if invitation.save
-                      puts "#{self.class}.#{__method__}, invitation.inspect:"<<" #{invitation.inspect}".green
+                      return true
                     else
                       return {errors: invitation.errors.full_messages}
                     end
                   else 
-                    puts "#{self.class}.#{__method__}, "<<"already exists".red
+                    return true
                   end
                 else
                   @error = "'#{role_name}' is not a recognized role."
@@ -37,7 +34,6 @@ module ActsAsRelatingTo
             @error = "expected a #{klass_name} but got a #{thing.class.name}"
           end
           return {error: @error} if @error
-          true
         end
         
       end

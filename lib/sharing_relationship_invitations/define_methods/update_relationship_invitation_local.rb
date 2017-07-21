@@ -1,4 +1,4 @@
-module ActsAsRelatingTo
+module SharingRelationshipInvitations
   module DefineMethods
     module UpdateRelationshipInvitationLocal
       def define_method_update_relationship_invitation_local(class_sym, options={})

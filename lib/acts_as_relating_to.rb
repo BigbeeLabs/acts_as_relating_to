@@ -7,6 +7,7 @@ require_dependency 'acts_as_relating_to/shared_methods'
 require_dependency 'acts_as_relating_to/instance_methods'
 require_dependency 'bigbee_labs/associations'
 require_dependency 'acts_as_having'
+require_dependency 'acts_as_sharing_relationship_invitations'
 
 module ActsAsRelatingTo
   def acts_as_relating_to(*classes_array)

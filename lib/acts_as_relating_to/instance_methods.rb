@@ -1,4 +1,5 @@
 #require_dependency 'acts_as_relating_to/instance_methods/owned_relationship_to_thing'
+puts 'foo - INSTANCE METHODS!!!'
 
 Gem::Specification.find_by_name("acts_as_relating_to").gem_dir.tap do |gem_dir|
   Dir["#{gem_dir}/lib/acts_as_relating_to/instance_methods/**/*.rb"].each do |f|

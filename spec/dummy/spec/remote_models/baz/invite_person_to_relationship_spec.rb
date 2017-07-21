@@ -14,7 +14,8 @@ RSpec.describe Baz do
     end
     it "does something" do 
       baz.invite_person_to_relationship(bar).tap do |returned|
-        expect(returned[:id]).to_not be_nil
+        expect(returned).to_not be_nil
+        expect(returned[:relationship_invitation_id]).to_not be_nil
         expect(returned[:errors]).to be_nil
       end
     end
@@ -26,7 +27,8 @@ RSpec.describe Baz do
     end
     it "does something" do 
       baz.invite_person_to_relationship(bar).tap do |returned|
-        expect(returned[:id]).to be_nil
+        expect(returned).to_not be_nil
+        expect(returned[:relationship_invitation_id]).to be_nil
         expect(returned[:errors]).to_not be_nil
       end
     end
@@ -47,15 +49,15 @@ def create_bar
 end
 
 def stub_success
-  response = {id: 1}.to_json
-  stub_request(:post, "https://bigbee-graph-staging.herokuapp.com/api/v0/bazs/1/relationship_invitations?as=friend&thing_id=#{bar.id}&thing_type=Bar").
+  response = {relationship_invitation_id: 1}.to_json
+  stub_request(:post, "https://bigbee-graph-staging.herokuapp.com/api/v0/bazs/1/sent_relationship_invitations?as=friend&thing_id=#{bar.id}&thing_type=Bar").
     with(headers: {'Token'=>'token'}).
     to_return(status: 200, body: response, headers: {})
 end
 
 def stub_failure
   response = {errors: ["well, shoot"]}.to_json
-  stub_request(:post, "https://bigbee-graph-staging.herokuapp.com/api/v0/bazs/1/relationship_invitations?as=friend&thing_id=#{bar.id}&thing_type=Bar").
+  stub_request(:post, "https://bigbee-graph-staging.herokuapp.com/api/v0/bazs/1/sent_relationship_invitations?as=friend&thing_id=#{bar.id}&thing_type=Bar").
     with(headers: {'Token'=>'token'}).
     to_return(status: 200, body: response, headers: {})
 end

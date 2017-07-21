@@ -1,4 +1,4 @@
-module ActsAsRelatingTo
+module SharingRelationshipInvitations
   module DefineMethods
     module ReceivedRelationshipInvitationsRemote
       def define_method_received_relationship_invitations_remote(class_sym, options={})
@@ -16,6 +16,7 @@ module ActsAsRelatingTo
           @called_by = __method__.to_s
           generic('get').tap do |remote_result|
             puts "#{self.class}.#{__method__}, remote_result:"<<" #{remote_result}".green
+            puts "#{self.class}.#{__method__}, remote_result.class:"<<" #{remote_result.class}".red
           end
         end
 

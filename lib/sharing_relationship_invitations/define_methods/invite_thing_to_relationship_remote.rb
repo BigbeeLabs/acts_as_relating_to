@@ -1,4 +1,4 @@
-module ActsAsRelatingTo
+module SharingRelationshipInvitations
   module DefineMethods
     module InviteThingToRelationshipRemote
       def define_method_invite_thing_to_relationship_remote(class_sym, options={})
@@ -25,6 +25,7 @@ module ActsAsRelatingTo
           if thing.is_a?(klass)
             @called_by = __method__.to_s
             generic('post').tap do |remote_result|
+              puts "remote_result:"<<" #{remote_result}".light_blue
               return remote_result
             end
           end

@@ -1,4 +1,4 @@
-module ActsAsRelatingTo
+module SharingRelationshipInvitations
   module DefineMethods
     module UpdateRelationshipInvitationRemote
       def define_method_update_relationship_invitation_remote(class_sym, options={})
