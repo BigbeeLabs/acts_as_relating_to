@@ -15,7 +15,8 @@ module ActsAsRelatingTo
         define_method(:sent_relationship_invitations) do 
           @called_by = __method__.to_s
           generic('get').tap do |remote_result|
-            puts "#{self.class}.#{__method__}, remote_result:"<<" #{remote_result}".green
+            @called_by = nil
+            @url = nil
           end
         end
 

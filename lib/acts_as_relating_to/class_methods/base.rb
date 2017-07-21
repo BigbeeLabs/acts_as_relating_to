@@ -38,6 +38,7 @@ module ActsAsRelatingTo
           :sent_relationship_invitations,
           :update_relationship_invitation,
           :relate_to_thing,
+          :relates_to_thing,
           :relationship_invitations_sent_to
         ]
         methods_to_define.each do |method_name|
