@@ -20,6 +20,7 @@ module ActsAsRelatingTo
       extend  DefineMethods
       extend  BigbeeLabs::Associations::ClassMethods
       extend  ActsAsHaving
+      extend  ActsAsSharingRelationshipInvitations
     end
 
     if self < ActiveRecord::Base
