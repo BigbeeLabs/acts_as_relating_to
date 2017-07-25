@@ -9,8 +9,10 @@ module ActsAsSharingRelationshipInvitations
     
     class_eval do 
       include SharingRelationshipInvitations::InstanceMethods
-      extend SharingRelationshipInvitations::DefineMethods
-      extend SharingRelationshipInvitations::ClassMethods
+      include SharingRelationshipInvitations::SharedMethods
+      extend  SharingRelationshipInvitations::DefineMethods
+      extend  SharingRelationshipInvitations::ClassMethods
+      extend  SharingRelationshipInvitations::SharedMethods
     end
 
     if is_array_of_keys?(classes_array)

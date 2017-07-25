@@ -16,11 +16,11 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
-  s.add_dependency "rails",               "~> 4.2"
-  s.add_dependency "acts-as-taggable-on", '~> 3.4'
-  s.add_dependency "acts_as_having",      '~> 0.0.22'
-  s.add_dependency "annotate",            '~> 2.7'
-
+  s.add_dependency "rails",                           '~> 4.2'
+  s.add_dependency "acts-as-taggable-on",             '~> 3.4'
+  s.add_dependency "acts_as_having",                  '~> 0.0.22'
+  s.add_dependency "annotate",                        '~> 2.7'
+  s.add_dependency 'bigbee_labs-remote_models_base',  '~> 0.0.17'
 
   s.add_development_dependency "pg",                  '0.20.0'
   s.add_development_dependency "rspec-rails",         '~> 3.0'

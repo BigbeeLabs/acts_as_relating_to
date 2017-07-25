@@ -14,10 +14,7 @@ module SharingRelationshipInvitations
 
         define_method(:received_relationship_invitations) do 
           @called_by = __method__.to_s
-          generic('get').tap do |remote_result|
-            puts "#{self.class}.#{__method__}, remote_result:"<<" #{remote_result}".green
-            puts "#{self.class}.#{__method__}, remote_result.class:"<<" #{remote_result.class}".red
-          end
+          generic('get')
         end
 
         private :received_relationship_invitations_url
