@@ -13,12 +13,10 @@ module SharingRelationshipInvitations
         end
 
         define_method(:update_relationship_invitation) do |args|
-          puts "#{self.class}.#{__method__}, args:"<<" #{args}".blue
           @called_by = __method__.to_s
           @invitation_id = args[:id]
           args.clone.tap do |c| 
             c.delete(:id)
-            puts "#{self.class}.#{__method__}, c:"<<" #{c}".blue
             @query = c
           end
           generic('patch').tap do |remote_result|

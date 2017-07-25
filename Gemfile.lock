@@ -1,29 +1,11 @@
 PATH
   remote: .
   specs:
-    acts_as_relating_to (0.0.12)
+    acts_as_relating_to (0.0.14)
       acts-as-taggable-on (~> 3.4)
       acts_as_having (~> 0.0.22)
       annotate (~> 2.7)
       rails (~> 4.2)
-
-PATH
-  remote: ~/rails_projects/bigbee_labs/gems/bigbee_labs-remote_models_base
-  specs:
-    bigbee_labs-remote_models_base (0.0.31)
-      acts_as_administering (~> 0.0.7)
-      acts_as_having (~> 0.0.8)
-      acts_as_relating_to (~> 0.0.4)
-      app_collaborators (~> 0.0.27)
-      bigbee_labs-associations (~> 0.0.2)
-      bigbee_labs-http_actions (~> 0.1.3)
-      httparty (~> 0.13)
-
-PATH
-  remote: ~/rails_projects/bigbee_labs/gems/http_actions
-  specs:
-    bigbee_labs-http_actions (0.1.9)
-      httparty (~> 0.13)
 
 GEM
   remote: https://rubygems.org/
@@ -65,25 +47,26 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (3.5.0)
       activerecord (>= 3.2, < 5)
-    acts_as_administering (0.0.18)
+    acts_as_having (0.0.34)
       acts-as-taggable-on (~> 3.4)
-      acts_as_relating_to (~> 0.0.4)
-      rails (~> 4.2)
-    acts_as_having (0.0.33)
-      acts-as-taggable-on (~> 3.4)
-      bigbee_labs-associations (~> 0.0.2)
+      bigbee_labs-remote_models_base (~> 0.0.17)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     annotate (2.7.2)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
-    app_collaborators (0.0.37)
-      acts_as_administering (~> 0.0.11)
-      acts_as_having (~> 0.0.12)
+    app_collaborators (0.0.39)
       rails (~> 4.2)
       rails-api (~> 0.4)
     arel (6.0.4)
     bigbee_labs-associations (0.0.2)
+    bigbee_labs-http_actions (0.1.9)
+      httparty (~> 0.13)
+    bigbee_labs-remote_models_base (0.0.35)
+      app_collaborators (~> 0.0.27)
+      bigbee_labs-associations (~> 0.0.2)
+      bigbee_labs-http_actions (~> 0.1.3)
+      httparty (~> 0.13)
     builder (3.2.3)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
@@ -116,7 +99,7 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashdiff (0.3.4)
-    httparty (0.15.5)
+    httparty (0.15.6)
       multi_xml (>= 0.5.2)
     i18n (0.8.6)
     listen (3.1.5)
@@ -227,8 +210,6 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_relating_to!
-  bigbee_labs-http_actions!
-  bigbee_labs-remote_models_base!
   database_cleaner
   factory_girl_rails
   guard-rspec
