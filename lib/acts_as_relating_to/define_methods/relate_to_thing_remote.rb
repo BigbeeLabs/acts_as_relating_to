@@ -7,7 +7,8 @@ module ActsAsRelatingTo
         singular = class_sym.to_s.singularize
 
         define_method("relate_to_#{singular}_url") do 
-          @url = app_provider.url.clone
+          puts "#{self.class}.#{__method__}, api_version:"<<" #{api_version}".red
+          @url = app_provider.uri.clone << '/api/' << api_version
           self.class.name.demodulize.downcase.pluralize.tap do |x|
             @url << "/#{x}/#{self.id}"
           end

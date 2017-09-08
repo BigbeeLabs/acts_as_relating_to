@@ -5,8 +5,6 @@ module ActsAsRelatingTo
         singular = class_sym.to_s.singularize
 
         define_method("relate_to_#{singular}") do |thing, args={}|
-          puts "#{self.class}.#{__method__}, thing.inspect:"<<" #{thing.inspect}".red
-          puts "#{self.class}.#{__method__}, args:"<<" #{args}".green
           unless @relationship = owned_relationship_to(thing).first
             @relationship = owned_relationships.create!(in_relation_to_type: thing.class.name, in_relation_to_id: thing.id)
           end
@@ -18,11 +16,14 @@ module ActsAsRelatingTo
                   thing.send("relate_to_#{singular}", self, as: role.reciprocal)
                 end
               end
-            else
-              @relationship.role_list.add(args[:as])
-              @relationship.save!
-              @relationship.reload
             end
+            @relationship.role_list.add(args[:as])
+            if @relationship.save!
+              puts "#{self.class}.#{__method__}, "<<"saved!".green
+            else
+              puts "#{self.class}.#{__method__}, "<<"not saved!".red
+            end
+            @relationship.reload
           end
           true
         end
