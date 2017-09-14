@@ -8,7 +8,8 @@ module SharingRelationshipInvitations
           :received_relationship_invitations,
           :sent_relationship_invitations,
           :update_relationship_invitation,
-          :relationship_invitations_sent_to
+          :relationship_invitations_sent_to,
+          :relationship_invitations
         ]
         methods_to_define.each do |method_name|
           send("define_method_#{method_name}_#{(options[:remote] ? 'remote' : 'local')}", class_sym, options)
