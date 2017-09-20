@@ -12,17 +12,13 @@ module ActsAsRelatingTo
             if role = Role.find_by(name: args[:as])
               @relationship.have_this_role role
               if role.reciprocal
-                unless thing.send("relates_to_#{singular}?", self, as: role.reciprocal)
-                  thing.send("relate_to_#{singular}", self, as: role.reciprocal)
+                unless thing.send("relates_to_#{self.class.name.underscore}?", self, as: role.reciprocal)
+                  thing.send("relate_to_#{self.class.name.underscore}", self, as: role.reciprocal)
                 end
               end
             end
             @relationship.role_list.add(args[:as])
-            if @relationship.save!
-              puts "#{self.class}.#{__method__}, "<<"saved!".green
-            else
-              puts "#{self.class}.#{__method__}, "<<"not saved!".red
-            end
+            @relationship.save!
             @relationship.reload
           end
           true

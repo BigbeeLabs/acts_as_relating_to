@@ -1,11 +1,18 @@
 PATH
   remote: .
   specs:
-    acts_as_relating_to (0.0.14)
+    acts_as_relating_to (0.0.17)
       acts-as-taggable-on (~> 3.4)
       acts_as_having (~> 0.0.22)
       annotate (~> 2.7)
       rails (~> 4.2)
+
+PATH
+  remote: ~/rails_projects/bigbee_labs/gems/app_collaborators
+  specs:
+    app_collaborators (0.0.40)
+      rails (~> 4.2)
+      rails-api (~> 0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -55,9 +62,6 @@ GEM
     annotate (2.7.2)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
-    app_collaborators (0.0.39)
-      rails (~> 4.2)
-      rails-api (~> 0.4)
     arel (6.0.4)
     bigbee_labs-associations (0.0.2)
     bigbee_labs-http_actions (0.1.9)
@@ -210,6 +214,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_relating_to!
+  app_collaborators!
   database_cleaner
   factory_girl_rails
   guard-rspec

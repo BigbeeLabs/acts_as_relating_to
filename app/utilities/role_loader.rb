@@ -52,15 +52,15 @@ class RoleLoader
     def create
       role = ActsAsRelatingTo::Role.new(spec[:role])
       if role.save
-        puts "    ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "saved.".green
+        puts "  ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "saved.".green
       else
-        puts "    ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "NOT saved.".red
+        puts "  ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "NOT saved.".red
       end
     end
 
     def delete
       if role.destroy
-        puts "    ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "destroyed.".green
+        puts "  ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "destroyed.".green
         @role = nil
       end
     end
@@ -69,12 +69,12 @@ class RoleLoader
       role.assign_attributes spec[:role]
       if role.changed?
         if role.save
-          puts "    ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "updated.".green
+          puts "  ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "updated.".green
         else
-         puts "    ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "NOT saved.".red
+         puts "  ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "NOT saved.".red
         end
       else 
-        puts "    ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "NOT saved".green << " (no changes)."
+        puts "  ActsAsRelatingTo::Role with name: " << spec[:role][:name].blue << " was " << "NOT saved".green << " (no changes)."
       end
     end
 

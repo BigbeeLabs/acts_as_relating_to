@@ -5,19 +5,25 @@ module ActsAsRelatingTo
         singular = class_sym.to_s.singularize
 
         define_method("relates_to_#{singular}?") do |thing, args={}|
-          if r = owned_relationships.where(in_relation_to_type: thing.class.name, in_relation_to_id: thing.id).first
-            if args[:as]
-              if role = Role.find_by(name: args[:as])
-                r.roles.include?(role)
+
+          owned_relationships.
+            where(
+              in_relation_to_type: thing.class.name, 
+              in_relation_to_id: thing.id
+            ).
+            first.
+            tap do |relationship|
+              return false unless relationship
+              if args[:as]
+                if role = Role.find_by(name: args[:as])
+                  return relationship.roles.include?(role)
+                else
+                  return relationship.role_list.include?(args[:as])
+                end
               else
-                r.role_list.include?(args[:as])
+                return true
               end
-            else
-              true
             end
-          else
-            false
-          end
         end
 
       end

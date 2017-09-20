@@ -1,0 +1,6 @@
+---
+headers:
+role:
+  name:           'child'
+  display_name:   'Child'
+  reciprocal:     'parent'
