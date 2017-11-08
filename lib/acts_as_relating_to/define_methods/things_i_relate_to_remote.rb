@@ -23,7 +23,11 @@ module ActsAsRelatingTo
             @query = nil
             @url = nil
             remote_result = JSON.parse(remote_result) if remote_result.is_a?(String)
-            return remote_result.map{|thing_hsh| thing_klass.new(thing_hsh)}
+            if remote_result.is_a?(Hash)
+              return [thing_klass.new(remote_result)]
+            else
+              return remote_result.map{|thing_hsh| thing_klass.new(thing_hsh)}
+            end
           end
         end
 
