@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    acts_as_relating_to (0.0.17)
+    acts_as_relating_to (0.0.19)
       acts-as-taggable-on (~> 3.4)
       acts_as_having (~> 0.0.22)
       annotate (~> 2.7)
@@ -10,7 +10,7 @@ PATH
 PATH
   remote: ~/rails_projects/bigbee_labs/gems/app_collaborators
   specs:
-    app_collaborators (0.0.40)
+    app_collaborators (0.0.42)
       rails (~> 4.2)
       rails-api (~> 0.4)
 

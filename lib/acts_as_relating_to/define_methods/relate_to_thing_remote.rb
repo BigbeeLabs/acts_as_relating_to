@@ -7,7 +7,7 @@ module ActsAsRelatingTo
         singular = class_sym.to_s.singularize
 
         define_method("relate_to_#{singular}_url") do 
-          puts "#{self.class}.#{__method__}, api_version:"<<" #{api_version}".red
+          #puts "#{self.class}.#{__method__}, api_version:"<<" #{api_version}".red
           @url = app_provider.uri.clone << '/api/' << api_version
           self.class.name.demodulize.downcase.pluralize.tap do |x|
             @url << "/#{x}/#{self.id}"
@@ -23,7 +23,7 @@ module ActsAsRelatingTo
             @query = args
             @query[:thing] = {thing_type: thing.class.name, thing_id: thing.id}
             generic('post').tap do |remote_result|
-              puts "#{self.class}.#{__method__}, remote_result:"<<" #{remote_result}".green
+              #puts "#{self.class}.#{__method__}, remote_result:"<<" #{remote_result}".green
             end
           else
             raise "#{self.class}.#{__method__}, "<<"WARNING! Expected a #{expected_klass_name} but got a #{thing.class.name}".red
