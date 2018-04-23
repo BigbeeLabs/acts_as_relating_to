@@ -21,7 +21,7 @@ module ActsAsRelatingTo
             @thing = thing
             @called_by = "relates_to_#{singular}"
             @query = args
-            @credential = {token: token}
+            #@credential = {token: token}
             #@query[:thing] = {thing_type: thing.class.name, thing_id: thing.id}
             generic('get').tap do |remote_result|
               #puts "#{self.class}.#{__method__}, remote_result:"<<" #{remote_result}".green

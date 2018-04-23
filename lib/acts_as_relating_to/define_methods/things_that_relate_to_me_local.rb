@@ -1,11 +1,8 @@
 module ActsAsRelatingTo
   module DefineMethods
-    module ThingsThatRelateToMe
+    module ThingsThatRelateToMeLocal
 
-      def define_method_things_that_relate_to_me(class_sym, options={})
-        define_method_location_switch class_sym, options
-        
-=begin        
+      def define_method_things_that_relate_to_me_local(class_sym, options={})
         puts "#{self}##{__method__}, class_sym:"<<" #{class_sym}".red
         thing_klass_name = options[:class_name] || class_sym.to_s.singularize.camelize
         thing_klass = thing_klass_name.constantize
@@ -14,7 +11,6 @@ module ActsAsRelatingTo
           relationships = relationships.tagged_with(options[:as]) if options[:as]
           thing_klass.where(id: relationships.pluck(:owner_id))
         end
-=end
       end
 
     end
