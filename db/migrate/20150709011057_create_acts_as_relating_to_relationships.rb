@@ -1,4 +1,4 @@
-class CreateActsAsRelatingToRelationships < ActiveRecord::Migration
+class CreateActsAsRelatingToRelationships < ActiveRecord::Migration[4.2]
   def change
     create_table :acts_as_relating_to_relationships do |t|
       t.integer :owner_id

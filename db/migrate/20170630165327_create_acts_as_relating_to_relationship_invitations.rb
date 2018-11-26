@@ -1,4 +1,4 @@
-class CreateActsAsRelatingToRelationshipInvitations < ActiveRecord::Migration
+class CreateActsAsRelatingToRelationshipInvitations < ActiveRecord::Migration[4.2]
   def change
     create_table :acts_as_relating_to_relationship_invitations do |t|
       t.integer :sender_id
