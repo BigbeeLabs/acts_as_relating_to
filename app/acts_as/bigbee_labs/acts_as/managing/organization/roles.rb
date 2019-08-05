@@ -1,3 +1,7 @@
+#------------------------------------------------------------------------------------------------
+# Use like: 
+#   include BigbeeLabs::ActsAs::Managing::Organization::Roles
+#------------------------------------------------------------------------------------------------
 module BigbeeLabs::ActsAs::Managing::Organization::Roles
 
   module ClassMethods
