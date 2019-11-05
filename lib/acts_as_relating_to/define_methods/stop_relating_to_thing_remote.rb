@@ -7,7 +7,6 @@ module ActsAsRelatingTo
         thing_klass_name ||= class_sym.to_s.singularize.camelize
         thing_klass = thing_klass_name.constantize
         thing_objekt_name = class_sym.to_s.singularize
-        puts "#{self.class}.#{__method__}, api_version:"<<" #{api_version}".blue
 
         define_method("stop_relating_to_#{thing_objekt_name}_url") do
           @url = app_provider.uri.clone << "/api/" << api_version

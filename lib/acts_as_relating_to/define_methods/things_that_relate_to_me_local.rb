@@ -3,7 +3,6 @@ module ActsAsRelatingTo
     module ThingsThatRelateToMeLocal
 
       def define_method_things_that_relate_to_me_local(class_sym, options={})
-        puts "#{self}##{__method__}, class_sym:"<<" #{class_sym}".red
         thing_klass_name = options[:class_name] || class_sym.to_s.singularize.camelize
         thing_klass = thing_klass_name.constantize
         define_method(class_sym.to_s + "_that_relate_to_me") do |options={}|
