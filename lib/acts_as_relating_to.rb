@@ -5,6 +5,11 @@ require_dependency 'acts_as_relating_to/class_methods'
 require_dependency 'acts_as_relating_to/define_methods'
 require_dependency 'acts_as_relating_to/shared_methods'
 require_dependency 'acts_as_relating_to/instance_methods'
+
+require_dependency 'acts_as_related_to_by/class_methods'
+require_dependency 'acts_as_related_to_by/define_methods'
+require_dependency 'acts_as_related_to_by/instance_methods'
+
 require_dependency 'bigbee_labs/associations'
 require_dependency 'acts_as_having'
 require_dependency 'acts_as_sharing_relationship_invitations'
@@ -38,5 +43,12 @@ module ActsAsRelatingTo
 
   end
 end
+
+module ActsAsRelatedToBy
+  include InstanceMethods
+  extend ClassMethods
+  extend DefineMethods
+end
+
 
 ActiveRecord::Base.extend ActsAsRelatingTo

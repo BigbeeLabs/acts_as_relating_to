@@ -4,7 +4,7 @@ module ActsAsRelatingTo
       def define_method_referencing_relationships
 
         define_method(:referencing_relationships) do
-          ActsAsRelatingTo::Relationship.where(in_relation_to_type: self.class, in_relation_to_id: self.id)
+          ::ActsAsRelatingTo::Relationship.where(in_relation_to_type: self.class.name, in_relation_to_id: self.id)
         end
 
       end

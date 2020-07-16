@@ -13,12 +13,20 @@ class RoleLoader
   # ==========================================================================
 
     def load_all
+      puts "in " << "#{self.class.name}.#{__method__}".white << ", " << "message".red
       Rails.root.join('db','seeds','acts_as_relating_to','roles','**','*.yaml').tap do |path|
         Dir["#{path}"].sort{|a,b| a <=> b}.each do |file|
           @spec = YAML.load_file(file).with_indifferent_access
           load_spec
         end
       end
+      Rails.root.join('db','dictionaries','roles','**','*.role').tap do |path|
+        Dir["#{path}"].sort{|a,b| a <=> b}.each do |file|
+          @spec = YAML.load_file(file).with_indifferent_access
+          puts "in " << "#{self.class.name}.#{__method__}".white << ", " << "spec: " << "#{spec}".yellow
+          load_spec
+        end
+      end            
     end
 
   private

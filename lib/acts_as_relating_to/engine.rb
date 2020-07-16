@@ -10,6 +10,11 @@ module ActsAsRelatingTo
 			end
 		end
 
+    initializer :append_dictionaries do |app|
+      app.config.x.dictionaries.events_paths ||= []
+      app.config.x.dictionaries.events_paths << "#{root}/db/dictionaries/events"
+    end
+
   end
     
 end

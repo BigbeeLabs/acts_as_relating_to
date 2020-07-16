@@ -5,7 +5,6 @@ module ActsAsRelatingTo
         singular = class_sym.to_s.singularize
 
         define_method("relates_to_#{singular}?") do |thing, args={}|
-
           owned_relationships.
             where(
               in_relation_to_type: thing.class.name, 

@@ -1,0 +1,40 @@
+---
+headers:
+  file_defines:             bigbee_labs_event
+  file_name:                "relate_to"
+  file_format_version:      01
+  class_name:               "BigbeeLabs::Event"
+event:                    
+  name:                     "acts_as_relating_to/relate_to"
+  display:                  "related to"
+  description:              "When one thing relates to another thing, possibly in some role."
+  details:
+    show_in_feed:           false
+    required_values:
+      - relationship: 
+        - id
+      - current_user:
+        - id
+        - first_name
+        - last_name
+    optional_values:
+      - actor:
+        - display_name
+    desired_event:
+      required_values:
+        - in_relation_to:
+          - id
+          - type
+        - initiator:
+          - id
+          - type
+      optional_values:
+        - owner:
+          - id
+          - type
+        - invitee:
+          - first_name
+          - last_name
+          - email_address
+        - role:
+          - id

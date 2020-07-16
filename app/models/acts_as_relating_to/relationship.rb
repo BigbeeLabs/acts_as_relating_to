@@ -35,5 +35,22 @@ module ActsAsRelatingTo
       acts_as_taggable_on :roles
       acts_as_having :roles, class_name: 'ActsAsRelatingTo::Role'
     
+    class << self 
+
+      def with_owner(owner)
+        where(owner_type: owner.class.name, owner_id: owner.id)
+      end
+
+      def with_role(role)
+        where(
+          id: ActsAsHaving::HasA.
+          where(hased: role, haser_type: 'ActsAsRelatingTo::Relationship').
+          pluck(&:haser_id)
+        )
+      end
+
+    end
+
+
   end
 end
