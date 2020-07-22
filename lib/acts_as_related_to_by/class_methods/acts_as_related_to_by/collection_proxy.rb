@@ -18,8 +18,6 @@ module ActsAsRelatedToBy
 
         #def <<(objekt, args={})
         def <<(objekt, args={})
-#          puts "in " << "#{__self__.class}.#{__method__}".white << ", " << "__organization_context_data__: " << "#{__organization_context_data__}".pink
-#          puts "in " << "#{__self__.class}.#{__method__}".white << ", " << "__legal_context_data__: " << "#{__legal_context_data__}".pink
 
           @__required_objekt_klass__ = __klass_args__[:class_name].constantize
 
@@ -88,7 +86,7 @@ module ActsAsRelatedToBy
               error = "The provided document is not currently in force."
               raise ArgumentError.new(error) unless document.in_force?
 
-              ActsAsHaving::HasA.create!(
+              ActsAsHaving::HasA.find_or_create_by!(
                 hased_type: document.class.name,
                 hased_id:   document.id,
                 haser_type: relationship.class.name,
@@ -101,7 +99,7 @@ module ActsAsRelatedToBy
 
               organization = __organization_context_data__[:organization]
 
-              ActsAsHaving::HasA.create!(
+              ActsAsHaving::HasA.find_or_create_by!(
                 hased_type: organization.class.name,
                 hased_id:   organization.id,
                 haser_type: relationship.class.name,
@@ -112,31 +110,8 @@ module ActsAsRelatedToBy
 
           end # ActiveRecord::Base.transaction
 
+          return {success: true}
 
-=begin
-          relationship = __self__.
-            send(:referencing_relationships).
-            find_or_create_by!(
-              owner_id: objekt.id,
-              owner_type: objekt.class.name
-            )
-
-          if __in_role__
-            tag_list = relationship.tag_list_on(:roles)
-            tag_list << __in_role__.to_s unless tag_list.include?(__in_role__)
-            relationship.set_tag_list_on(:roles, tag_list)
-            relationship.save!
-          end
-
-          ActsAsHaving::HasA.create!(
-            haser_type: __organization__.class.name,
-            haser_id:   __organization__.id,
-            hased_type: relationship.class.name,
-            hased_id:   relationship.id
-          )
-
-          relationship
-=end          
         end
 
       end
