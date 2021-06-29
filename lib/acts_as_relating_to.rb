@@ -42,6 +42,7 @@ module ActsAsRelatingTo
     end
 
   end
+
 end
 
 module ActsAsRelatedToBy

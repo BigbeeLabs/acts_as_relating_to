@@ -30,7 +30,9 @@ module ActsAsRelatedToBy
               send(:referencing_relationships).
               find_or_create_by!(
                 owner_id: objekt.id,
-                owner_type: objekt.class.name
+                owner_type: objekt.class.name,
+                in_relation_to_type: __self__.class.name,
+                in_relation_to_id: __self__.id
               )
 
             if contexts = __klass_args__[:context]
@@ -113,6 +115,30 @@ module ActsAsRelatedToBy
           return {success: true}
 
         end
+
+        def remove(objekt, args={})
+
+          @__required_objekt_klass__ = __klass_args__[:class_name].constantize
+          error = "#{__self__.class}.#{__meth_name__}.<< expected a #{__required_objekt_klass__} but got a #{objekt.class}."
+          raise ArgumentError.new(error) unless objekt.is_a?(__required_objekt_klass__)
+
+          ActiveRecord::Base.transaction do 
+
+            relationship = __self__.
+              send(:referencing_relationships).
+              find_by!(
+                owner_id: objekt.id,
+                owner_type: objekt.class.name,
+                in_relation_to_type: __self__.class.name,
+                in_relation_to_id: __self__.id
+              )
+
+            relationship.tags_on(:roles).where(name: __in_role__).first.tap do |tag|
+              relationship.taggings.where(tag: tag).destroy_all
+            end
+
+          end # ActiveRecord::Base.transaction
+        end #remove
 
       end
     end

@@ -32,13 +32,11 @@ module ActsAsRelatedToBy
           end
 
           if contexts && context_keys.include?(:organization)
-
             context = OpenStruct.new(contexts.find{|c| c.keys.first == :organization}[:organization])
             organization_key = context.organization_key.try(:to_sym)
             organization_key ||= context.organization_type.demodulize.underscore.to_sym
             organization_klass = context.organization_type.constantize
             organization = args[organization_key]
-
             organization_error = "The #{organization_key} key is missing for the #{self.class.name}.#{meth_name} method."
             raise ArgumentError.new(organization_error) unless organization
 
@@ -89,11 +87,11 @@ module ActsAsRelatedToBy
             referencing_relationships = referencing_relationships.where(id: legal_document_relationship_ids)
           end
 
-          collection = if klass.is_a?(ActiveRecord::Base)
-            raise "#{self.class}.#{__method__}".red
-          else
-            referencing_relationships.map{|rr| klass.new(id: rr.owner_id)}
-          end
+          collection =  if (klass < ActiveRecord::Base)
+                          klass.where(id: referencing_relationships.pluck(:owner_id))
+                        else
+                          referencing_relationships.map{|rr| klass.new(id: rr.owner_id)}
+                        end
 
           return if collection.is_a?(CollectionProxy)
           
