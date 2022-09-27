@@ -23,7 +23,6 @@ module ActsAsRelatedToBy
         end
       end
 
-
     end
   end
 end
