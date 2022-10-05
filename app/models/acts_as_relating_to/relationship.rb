@@ -25,8 +25,8 @@ module ActsAsRelatingTo
     # ==========================================================================
     #  Associations
     # ==========================================================================
-      belongs_to  :owner,               polymorphic: true
-      belongs_to  :in_relation_to,      polymorphic: true
+      belongs_to  :owner,               polymorphic: true, optional: true
+      belongs_to  :in_relation_to,      polymorphic: true, optional: true
     
     # ==========================================================================
     #  ActsAs Modules
