@@ -13,7 +13,6 @@ class RoleLoader
   # ==========================================================================
 
     def load_all
-      puts "in " << "#{self.class.name}.#{__method__}".white << ", " << "message".red
       Rails.root.join('db','seeds','acts_as_relating_to','roles','**','*.yaml').tap do |path|
         Dir["#{path}"].sort{|a,b| a <=> b}.each do |file|
           @spec = YAML.load_file(file).with_indifferent_access
@@ -23,7 +22,7 @@ class RoleLoader
       Rails.root.join('db','dictionaries','roles','**','*.role').tap do |path|
         Dir["#{path}"].sort{|a,b| a <=> b}.each do |file|
           @spec = YAML.load_file(file).with_indifferent_access
-          puts "in " << "#{self.class.name}.#{__method__}".white << ", " << "spec: " << "#{spec}".yellow
+          @role = find_role
           load_spec
         end
       end            
@@ -31,9 +30,17 @@ class RoleLoader
 
   private
 
-    def spec()        @spec                                   end
-    def role()        @role ||= find_role                     end
-    def role_name()   spec[:role][:name]                      end
+    def spec
+      @spec                                   
+    end
+
+    def role
+      @role ||= find_role
+    end
+
+    def role_name
+      spec[:role][:name]                      
+    end
 
     def update?
       role and (spec[:headers].nil? or !spec[:headers][:delete])

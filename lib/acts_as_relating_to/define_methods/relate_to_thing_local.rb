@@ -12,8 +12,8 @@ module ActsAsRelatingTo
             if role = Role.find_by(name: args[:as])
               @relationship.have_this_role role
               if role.reciprocal
-                unless thing.send("relates_to_#{self.class.name.underscore}?", self, as: role.reciprocal)
-                  thing.send("relate_to_#{self.class.name.underscore}", self, as: role.reciprocal)
+                unless thing.send("relates_to_#{singular}?", self, as: role.reciprocal)
+                  thing.send("relate_to_#{singular}", self, as: role.reciprocal)
                 end
               end
             end
